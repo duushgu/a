@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder-Editor
-
-Dies ist eine temporäre Skriptdatei.
-"""
-"""
 def schnitt():
     import math
     
@@ -34,8 +27,6 @@ def schnitt():
         x_neu += dx
 
     print("Schnittpunkte:",schnittpunkte)
-"""
-    
 
 from tkinter import*
 import math, random
@@ -209,3 +200,4 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
+
