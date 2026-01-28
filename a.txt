@@ -176,7 +176,7 @@ def fläche():
     
 #Daten Externe
 def export():
-    f=open('Übung_230226.txt','w')
+    f=open('Übung_300126.txt','w')
     f.write('x-Werte ; y-Werte'+'\n')
     for l in range(len(x)):
         f.write(str(round(x[l],3)) + ' ; ' + str(round(y[l],3)) + '\n')
@@ -189,7 +189,7 @@ def schließen():
     gui.destroy()
 
 #Button
-Button(gui,text='Starten',command=prüfen, width=10).place(x=30,y=270) #Es ist in aktiv Button
+Button(gui,text='Starten',command=prüfen, width=10).place(x=30,y=270)
 b2=Button(gui,text='Berechnen',command=funktion,width=10,state='disabled')
 b3=Button(gui,text='Zeichnen',command=diagramm,width=10,state='disabled')
 b4=Button(gui,text='Fläche',command=fläche,width=10,state='disabled')
@@ -203,3 +203,4 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
+
