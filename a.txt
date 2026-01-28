@@ -136,7 +136,10 @@ def diagramm():
     #Extremstellen
     plt.scatter(ext_x,ext_y,color='orange',label='Extrema')
     
+    #Achsen(vertical und horizontal)
     plt.axhline(0,color='green')
+    plt.axvline(0,color='green')
+    
     plt.title("Graphische Darstellung")
     plt.xlabel("x-Werte")
     plt.ylabel("y-Werte")
@@ -200,4 +203,3 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
-
