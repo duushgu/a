@@ -1,33 +1,3 @@
-def schnitt():
-    import math
-    
-    schnittpunkte=[]
-    
-    a = float(e_a.get() or 1)
-    b = float(e_b.get() or 1)
-    dx = float(e_dx.get() or 0.1)
-
-    x_alt = -5
-    h_alt = a*math.sin(x_alt-b) - ((-a*x_alt**2)+b)
-
-    x_neu = x_alt + dx
-    while x_neu <= 5:
-        h_neu = a*math.sin(x_neu-b) - ((-a*x_neu**2)+b)
-
-        # Vorzeichenwechsel ⇒ Schnittpunkt
-        if h_alt * h_neu < 0:
-            x_s = (x_alt + x_neu) / 2      # Näherung
-            y_s = a*math.sin(x_s-b)
-            schnitt_x.append(x_s)
-            schnitt_y.append(y_s)
-            schnittpunkte.append(x_s,y_s)
-
-        x_alt = x_neu
-        h_alt = h_neu
-        x_neu += dx
-
-    print("Schnittpunkte:",schnittpunkte)
-
 from tkinter import*
 import math, random
 import matplotlib.pyplot as plt
@@ -195,6 +165,35 @@ b3=Button(gui,text='Zeichnen',command=diagramm,width=10,state='disabled')
 b4=Button(gui,text='Fläche',command=fläche,width=10,state='disabled')
 b5=Button(gui,text='Export',command=export,width=10,state='disabled')
 Button(gui,text='Beenden',command=schließen,width=10, bg='red').place(x=120,y=330)
+def schnitt():
+    import math
+    
+    schnittpunkte=[]
+    
+    a = float(e_a.get() or 1)
+    b = float(e_b.get() or 1)
+    dx = float(e_dx.get() or 0.1)
+
+    x_alt = -5
+    h_alt = a*math.sin(x_alt-b) - ((-a*x_alt**2)+b)
+
+    x_neu = x_alt + dx
+    while x_neu <= 5:
+        h_neu = a*math.sin(x_neu-b) - ((-a*x_neu**2)+b)
+
+        # Vorzeichenwechsel ⇒ Schnittpunkt
+        if h_alt * h_neu < 0:
+            x_s = (x_alt + x_neu) / 2      # Näherung
+            y_s = a*math.sin(x_s-b)
+            schnitt_x.append(x_s)
+            schnitt_y.append(y_s)
+            schnittpunkte.append(x_s,y_s)
+
+        x_alt = x_neu
+        h_alt = h_neu
+        x_neu += dx
+
+    print("Schnittpunkte:",schnittpunkte)
 
 #Button place
 b2.place(x=120,y=270)
@@ -203,4 +202,5 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
+
 
