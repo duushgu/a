@@ -13,11 +13,11 @@ Label(gui, width=10, text='Parameter a:').place(x=30,y=120)
 Label(gui, width=10,text='Parameter b:').place(x=30,y=150)
 Label(gui, width=10,text='Schrittweite:').place(x=30,y=180)
 Label(gui,width=10, text='Punktzahl:').place(x=30,y=210)
-res=Label(gui, text='Viel Spaß!',width=23)
+hi=Label(gui, text='Viel Spaß!',width=23)
 funk=Label(gui, text='f(x)=20*a*sin(x+10)+b*x**3',width=23)
 
 #Label place
-res.place(x=30,y=30)
+hi.place(x=30,y=30)
 funk.place(x=30,y=60)
 
 #Entry
@@ -47,12 +47,12 @@ def prüfen():
         sw=float(e_sw.get())
         p=int(e_p.get())
         print('Eingabe gelesen')
-        res.config(text='Kein Problem!')
         b2['state']=NORMAL
+        hi.config(text='Kein Problem!')
         return True
     except:
-        res.config(text='Prüfen Sie noch Eingabe')
         print('Eingabe Fehler')
+        hi.config(text='Prüfen Sie noch Eingabe')
         return False 
 
 #Auswertung
@@ -75,8 +75,10 @@ def funktion():
             x0=x[n]-y[n]*(x[n+1]-x[n])/(y[n+1]-y[n])
             ns.append(x0)
             
+    #Erste Ableitung
+    dy=[(y[i+1]-y[i])/sw for i in range(len(y)-1)]
+
     #Extrempunkte
-    dy = [(y[i+1]-y[i])/sw for i in range(len(y)-1)]
     ext_y=[]
     ext_x=[]
     extrema=[]
@@ -88,13 +90,14 @@ def funktion():
           ext_y.append(y0)
           extrema.append((x0,y0))
         
-    res.config(text='Diskrete Werte sind bereit!')
     print('Nullstellen: ', ns)
     print('y Werte der Extrema: ',extrema)
     
     b3['state']=NORMAL
     b4['state']=NORMAL
     b5['state']=NORMAL
+    
+    hi.config(text='Diskrete Werte sind bereit!')
 
 #Graph
 def diagramm():
@@ -116,8 +119,9 @@ def diagramm():
     plt.grid()
     plt.legend()
     plt.show()
-    res.config(text='Schauen Sie den Graph.')
+    
     print('gezeichnet')
+    hi.config(text='Schauen Sie den Graph.')
 
 #Fläche berechnen
 def fläche():
@@ -131,7 +135,7 @@ def fläche():
     
     #Bezugsfläche
     b_fl=(xmax-xmin)*(ymax-ymin)
-    print(b_fl)
+    print('Bezugsfläche',b_fl)
     
     p_in=0
     for k in range(p):
@@ -142,24 +146,24 @@ def fläche():
             p_in+=1
     erg=b_fl*(p_in/p)
     print('Fläche: ',erg)
-    res.config(text='Fläche: '+str(round(erg,2)))
+    hi.config(text='Fläche: '+str(round(erg,2)))
     
 #Daten Externe
 def export():
-    f=open('Übung_300126.txt','w')
+    f=open('Übung_230226.txt','w')
     f.write('x-Werte ; y-Werte'+'\n')
     for l in range(len(x)):
         f.write(str(round(x[l],3)) + ' ; ' + str(round(y[l],3)) + '\n')
     f.close()
     print('exportiert')
-    res.config(text='Datei gespeichert!')
+    hi.config(text='Datei gespeichert!')
 
 #Ende
 def schließen():
     gui.destroy()
 
 #Button
-Button(gui,text='Starten',command=prüfen, width=10).place(x=30,y=270)
+Button(gui,text='Starten',command=prüfen, width=10).place(x=30,y=270) #Es ist in aktiv Button
 b2=Button(gui,text='Berechnen',command=funktion,width=10,state='disabled')
 b3=Button(gui,text='Zeichnen',command=diagramm,width=10,state='disabled')
 b4=Button(gui,text='Fläche',command=fläche,width=10,state='disabled')
@@ -194,7 +198,6 @@ def schnitt():
         x_neu += dx
 
     print("Schnittpunkte:",schnittpunkte)
-
 #Button place
 b2.place(x=120,y=270)
 b3.place(x=30,y=300)
@@ -202,5 +205,3 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
-
-
