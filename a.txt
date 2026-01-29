@@ -2,7 +2,7 @@ from tkinter import*
 import math, random
 import matplotlib.pyplot as plt
 
-#Die Problem
+#Das Problem
 def f(x):
     return 20*a*math.sin(x+10)+b*x**3
 
@@ -210,3 +210,4 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
+
