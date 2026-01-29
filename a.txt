@@ -105,7 +105,7 @@ def funktion():
 
 #Graph
 def diagramm():
-    plt.plot(x,y,label='Funktion')
+    plt.plot(x,y,label='f(x)')
     
     #Nullstelen
     plt.scatter(ns, [0]*len(ns),color='red',label='Nullstellen')
@@ -210,4 +210,3 @@ b4.place(x=120,y=300)
 b5.place(x=30,y=330)
 
 gui.mainloop()
-
