@@ -48,7 +48,7 @@
  }
 
  #ausgeb{
-   color: whitesmoke;
+   color: white;
    font-weight: bold;
  }
 
@@ -69,9 +69,9 @@
 <body>
 <section id=s1>
 <table>
-  <tr><td colspan="3" id=td1><b>Fadenpendel</b></td></tr>
-<tr><td>Fadenlänge: </td><td colspan="2" ><input id=lin></input></td></tr>
-<tr><td>Auslenkung: </td><td colspan="2" ><input id=win></input></td></tr>
+  <tr><td colspan="3" id=td1><b> </b></td></tr>
+<tr><td> </td><td colspan="2" ><input id=lin></input></td></tr>
+<tr><td> </td><td colspan="2" ><input id=win></input></td></tr>
 <tr><td><button id=rech>BERECHNEN</button></td>
     <td><button id=ausgeb >AUSGEBEN</button></td>
     <td><button id=lösch>LÖSCHEN</button></td></tr>
@@ -89,7 +89,7 @@ const g=9.81;
 aus=document.getElementById("ausgeb");
 p1=document.getElementById("p1");
 
-aus.disabled=true; //button 
+aus.disabled=true;
 aus.style.backgroundColor='gray';
 
 function rechen(){
