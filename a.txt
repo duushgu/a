@@ -1,155 +1,19 @@
-<html>
-<head>
-<style>
-  body {
-    font-family: arial;
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+import pandas as pd
 
-  #s1,#s2 {
-    padding: 3rem;
-  }
+fname="C:/Users/student30/Downloads/Fläche_pandas.csv"
+rfil=pd.read_csv(fname,sep=';')
+print(rfil)
+print(rfil.describe())
 
-  #s1{
-    background-color: lightgray;
-  }
+dfr=pd.DataFrame(rfil,columns=['Flaeche'])
 
-  #s2{
-    background-color: lightblue;
-  }
+print('Anzahl',len(dfr)['Flaeche'])
+print('Mittelwert',dfr.mean()) 
+print('Max',dfr.max())
+print('Varianz',dfr.var())
+print('Stabw.s',dfr.std())
 
-  table {
-    margin: 0 auto;
-    border-style: solid;
-    border-collapse: collapse;
-    border-width: 1px ;
-    padding: 4px;
-    text-align: center;
-    width: min(300px, 100%);
+print('Kovarianz\n',dfr.cov())
+print('Korrelation\n',dfr.corr())
 
-  }
-
- td {
-    margin: 0 auto;
-    border-style: solid;
-    border-collapse: collapse;
-    border-width: 1px ;
-    padding: 4px;
-    text-align: center;
-  }
-
- #p1 {
-   width: 100%;
-   display: flex;
-   justify-content: center;
- }
-
- #ausgeb{
-   color: white;
-   font-weight: bold;
- }
-
- #rech{
-   color: darkgreen;
-   font-weight: bold;
- }
-
- #lösch{
-   color: darkred;
-   font-weight: Bold;
- }
-
- input{
-   text-align: center }
-</style>
-</head>
-<body>
-<section id=s1>
-<table>
-  <tr><td colspan="3" id=td1><b> </b></td></tr>
-<tr><td> </td><td colspan="2" ><input id=lin></input></td></tr>
-<tr><td> </td><td colspan="2" ><input id=win></input></td></tr>
-<tr><td><button id=rech>BERECHNEN</button></td>
-    <td><button id=ausgeb >AUSGEBEN</button></td>
-    <td><button id=lösch>LÖSCHEN</button></td></tr>
-</table>
-</section>
-<section id=s2>
-  <div id="p1"></div>
-</section>
-<script>
-let l,w, ok;
-let meld, aus, p1;
-let t=[],y=[];
-const g=9.81;
-  
-aus=document.getElementById("ausgeb");
-p1=document.getElementById("p1");
-
-aus.disabled=true;
-aus.style.backgroundColor='gray';
-
-function rechen(){
-  let l=document.getElementById("lin").value;
-  let w=document.getElementById("win").value;
-  ok=true;
-  
-  try{
-    wval=Number(w);
-    lval=Number(l);
-
-    if(w ==0||l ==0){
-	  throw"Bitte beide Felder ausfüllen"
-	  }
-    if(isNaN(w)||isNaN(l)){
-	  throw"Bitte Zahlen eingeben";
-	  }
-  }catch(e){
-    alert(e); 
-	  ok=false;
-	}
-  
-  if(ok){
-    for(let i=0; i<=Math.PI; i+=0.1){
-    t.push(i.toFixed(2));
-    y.push((w*Math.cos(Math.sqrt(g/l)*i)).toFixed(2));
-    }
-    
-  	aus.disabled=false;  
-    aus.style.backgroundColor='green';
-  }
-}
-
-function ausgeben(){
-  let str='';
-  str='<table id=t1>'
-  str+='<tr><td colspan="2"><b>Werte</b></td></tr>'
-  str+='<tr><td><i>t</i></td><td><i>y</i></td></tr>'
-  for(let i in t){
-    str+='<tr><td> '+t[i]+' </td><td> '+ y[i] +' </td></tr>'
-  }
-  
-  str+='</table>';
-  p1.innerHTML=str;
-}
-
-function löschen(){
-  document.getElementById("lin").value="";
-  document.getElementById("win").value='';
-  t=[];
-  y=[];
-  p1.innerHTML="";
-  aus.disabled=true;
-  aus.style.backgroundColor='gray';
-}
-
-document.getElementById("rech").onclick=function(){rechen();};
-aus.onclick=function(){ausgeben();};
-document.getElementById("lösch").onclick=function(){löschen();};
-
-</script>
-</body>
-</html>
+#print('Mittl. Fehler: ', dfr.var()['Flaeche']/math.sqrt(len(dfr)))
