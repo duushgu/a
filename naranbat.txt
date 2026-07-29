@@ -52,7 +52,7 @@ def export():
 # Formular
 gui=Tk()
 gui.geometry('300x200')
-gui.title('Klausurvorbereitung')
+gui.title('Title')
 l_dx=Label(gui, text='dx')
 l_area=Label(gui)
 e_dx=Entry(gui)
