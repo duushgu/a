@@ -3,85 +3,69 @@ import math
 import matplotlib.pyplot as plt
 import random
 
-gui=Tk()
-gui.geometry('350x350')
-gui.title('Halllooo')
-gui['bg']="Pink"
-
+# Funktionen
 def ende():
     gui.destroy()
     
 def berechnen():
-    global v1, v2, v3, x, y
-    v1= e_1.get()
-    v2= e_2.get()
-    v3= e_3.get()
+    global dx, x, y
+    x=[]
+    y=[]
+    p_in=p_out=0
+    dx=e_dx.get()
     try:
-        v1=float(v1)
-        v2=float(v2)
-        v3=float(v3)
-        print(v1,v2,v3)
+        dx=float(dx)
     except:
-        print('Fehler')
-    x = []
-    y = []    
-    vx= v1
-    while vx <= v2:
+        print('Zahl eingeben')
+        return
+    vx=0
+    while vx<=10:
         x.append(vx)
         y.append(math.exp(-2*vx))
-        vx += v3
-    for i in range(100000):
-        px = random.random()*4+1 
-        py = random.random()*math.exp(-2)
-    
 
+        vx+=dx
+    for i in range(100000):
+        px=random.random()*4+1
+        py=random.random()*math.exp(-2)
+        if py<=math.exp(-2*px):
+            p_in+=1
+        else:
+            p_out+=1
+    fl=4*math.exp(-2)*p_in/(p_in+p_out)
+    l_area['text']='Fläche: '+str(fl)
+    b_d['state']='normal'
+    b_f['state']='normal'
+    
 def diagramm():
-    import matplotlib.pyplot as plt
-    plt.plot(x, y)
+    plt.plot(x,y)
     plt.grid()
     plt.show()
-    
-    
+
 def export():
-    filname ='C:/users/studentenoyumaa/desktop/test.txt'
-    fileobj = open(filname,'w')
+    filname='C:/users/student08/desktop/test.txt'   
+    fileobj=open(filname, 'w')
     for i in range(len(x)):
-        hstr = (str(round(x[i], 3))+', '+str(round(y[i], 3))+'\n')
+        hstr=str(round(x[i],3))+', '+str(round(y[i],3))+'\n'
         fileobj.write(hstr)
     fileobj.close()
     
-
-l_b = Label(gui, text='max')
-l_b.place(x=10, y=30)
-
-l_a = Label(gui, text='min')
-l_a.place(x=10, y=60)
-
-l_c= Label(gui, text ='step')
-l_c.place(x=10, y=90)
-
-e_b = Entry(gui)
-e_a = Entry(gui)
-e_c = Entry(gui)
-e_d = Entry(gui)
-
-e_b.place(x=50, y=30)
-e_a.place(x=50, y=60)
-e_c.place(x=50, y=90)
-
-
-e_b.insert(0, 0)
-e_a.insert(0, 10)
-e_c.insert(0, 0.1)
-
-
-b_b = Button(gui, text= 'Berechnen', command=berechnen)
-b_b.place(x=10, y=130)
-b_a = Button(gui, text= 'Diagramm', command=diagramm)
-b_a.place(x=10, y=160)
-b_d = Button(gui, text= 'Export', command=export)
-b_d.place(x=10, y=190)
-b_c = Button(gui, text= 'Beenden', command=ende, bg= 'red')
-b_c.place(x=100, y=190)
+# Formular
+gui=Tk()
+gui.geometry('300x200')
+gui.title('Klausurvorbereitung')
+l_dx=Label(gui, text='dx')
+l_area=Label(gui)
+e_dx=Entry(gui)
+b_e=Button(gui, text='beenden', command=ende, bg='red')
+b_b=Button(gui, text='berechnen', command=berechnen)
+b_d=Button(gui, text='Diagramm', state='disabled', command=diagramm)
+b_f=Button(gui, text='Export', state='disabled', command=export)
+l_dx.place(x=30, y=30)
+l_area.place(x=30, y=60)
+e_dx.place(x=150,y=30)
+b_b.place(x=30, y=120)
+b_d.place(x=150, y=120)
+b_f.place(x=30, y=160)
+b_e.place(x=150,y=160)
 
 gui.mainloop()
