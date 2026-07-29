@@ -38,8 +38,9 @@ def berechnen():
 def diagramm():
     import matplotlib.pyplot as plt
     plt.plot(x, y)
-    plt.show()
     plt.grid()
+    plt.show()
+    
     
 def export():
     filname ='C:/users/studentenoyumaa/desktop/test.txt'
@@ -77,10 +78,10 @@ e_c.insert(0, 0.1)
 b_b = Button(gui, text= 'Berechnen', command=berechnen)
 b_b.place(x=10, y=130)
 b_a = Button(gui, text= 'Diagramm', command=diagramm)
-b_a.place(x=10, y=130)
+b_a.place(x=10, y=160)
 b_d = Button(gui, text= 'Export', command=export)
-b_d.place(x=10, y=130)
-b_c = Button(gui, text= 'Beenden', command=ende, bg= ' red')
-b_c.place(x=10, y=130)
+b_d.place(x=10, y=190)
+b_c = Button(gui, text= 'Beenden', command=ende, bg= 'red')
+b_c.place(x=100, y=190)
 
 gui.mainloop()
